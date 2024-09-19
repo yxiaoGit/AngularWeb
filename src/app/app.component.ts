@@ -1,14 +1,26 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { RouterOutlet } from '@angular/router';
+import { PromiseService } from './promise.service';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  styleUrl: './app.component.css',
+  imports: [FormsModule],
+
+  providers: [PromiseService]
 })
 export class AppComponent {
   title = 'alertTimer';
+
+  seconds: number = 0;
+
+  constructor(
+      private alerter: PromiseService
+  ) {}
+
+  public createAlert() {
+      this.alerter.createTimedAlert(this.seconds);
+  }
 }
