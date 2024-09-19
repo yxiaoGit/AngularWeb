@@ -1,14 +1,20 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { RouterOutlet } from '@angular/router';
+import { SharedService } from './shared.service';
+import { GoodGuysComponent} from './good-guys.component';
+import { BadGuysComponent} from './bad-guys.component';
+
+
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet],
+  imports: [GoodGuysComponent, BadGuysComponent],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  styleUrl: './app.component.css',
+  providers:[SharedService]
 })
 export class AppComponent {
   title = 'sharedService';
+
+  constructor( public shared: SharedService) {}
 }
